@@ -11,15 +11,19 @@ export const ConstructionContainer = styled.div`
     width: 100%;
     margin-right: 10px;
     span {
+        display: flex;
+        justify-content: center;
         border: 1px solid #000;
         border-radius: 50%;
         background-color: #000055;
         width: 1rem;
         height: 1rem;
-        display: block;
         line-height: 1;
         padding: 0.25rem;
         cursor: pointer;
+        &:hover {
+            filter: brightness(200%);
+        }
     }
 `;
 
