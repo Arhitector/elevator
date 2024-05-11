@@ -13,20 +13,16 @@ const Elevator: React.FC<ElevatorProps> = ({ floor = 0 }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
-        const handleDoorTiming = () => {
-            setTimeout(() => {
-                setIsOpen(true);
-                setTimeout(() => {
-                    setIsOpen(false);
-                }, ELEVATOR_DOOR_SPEED);
-            }, ELEVATOR_SPEED);
-        };
+        const timeoutId = setTimeout(() => {
+            setIsOpen(true);
+            const innerTimeoutId = setTimeout(() => {
+                setIsOpen(false);
+            }, ELEVATOR_DOOR_SPEED);
 
-        handleDoorTiming();
+            return () => clearTimeout(innerTimeoutId);
+        }, ELEVATOR_SPEED);
 
-        return () => {
-            clearTimeout(handleDoorTiming);
-        };
+        return () => clearTimeout(timeoutId);
     }, [floor]);
 
     return (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Elevator from '../elevator'
+import { BuildingConfig } from '../buildingForm';
 import { ELEVATOR_SPEED, ELEVATOR_DOOR_SPEED } from '../../vars'
 import {
   ConstructionContainer,
@@ -13,7 +14,7 @@ interface ElevatorState {
   available: boolean;
 }
 
-export default function Building({floors, elevatorsAmount}) {
+const Building: React.FC<BuildingConfig> = ({ floors, elevatorsAmount }) => {
   const [elevators, setElevators] = useState<ElevatorState[]>(new Array(elevatorsAmount).fill({
     floor: 0,
     available: true,
@@ -84,3 +85,5 @@ export default function Building({floors, elevatorsAmount}) {
     </>
   )
 }
+
+export default Building;
